@@ -1,8 +1,78 @@
 <?php
+//var_dump($_GET);
+//var_dump(isset($_GET["email"])); //false till insert the "email" then true
 
+$userEmail = $_GET["email"];
+if(isset($userEmail))
+{
+    //var_dump($userEmail);
+    /* if(str_contains($userEmail,"@") && str_contains($userEmail, ".")) //check if "email" contain both "@" and "."
+    {
+        //var_dump("ok");
+        $message = "Welcome";
+    }else
+    {
+        $message = "Nope";
+    } */
 
+    $response = validateEmail($userEmail);
+    /* if($response)
+    {
+        $message =
+        [
+            "class" => "success",
+            "alert" => "You subscribe to our newsletter !"
+        ];
+    }
+    else 
+    {
+        $message = [
+            "class" => "danger",
+            "alert" => "Error! Insert a correct email please."
+        ];
+    } */
 
+    $message = generateAlert($response);
+}
 
+function generateAlert($input)
+{
+    if ($input) {
+        return
+            [
+                "class" => "success",
+                "alert" => "You subscribe to our newsletter !"
+            ];
+    } else {
+        return [
+            "class" => "danger",
+            "alert" => "Error! Insert a correct email please."
+        ];
+    }
+}
+
+function validateEmail($mail)
+{
+    if (str_contains($mail, "@") && str_contains($mail, ".")) //check if "email" contain both "@" and "."
+    {
+        //var_dump("ok");
+        //$message = "Welcome";
+        return true ;
+        //return "You subscribe to our newsletter !";
+        /* return [
+            "class" => "success",
+            "alert" => "You subscribe to our newsletter !"
+        ]; */
+    } else {
+        //$message = "Nope";
+        return false ;
+        //return "Error! Insert a correct email please.";
+        /* return [
+            "class" => "danger",
+            "alert" => "Error! Insert a correct email please."
+        ]; */
+    }
+}
 
 ?>
 
@@ -63,6 +133,15 @@
     </header>
 
     <main>
+        <?php if(isset($message)) : ?>
+        <div
+            class="alert alert-<?php echo $message["class"] ?>"
+            role="alert"
+        >
+            <strong> <?php echo $message["alert"] ?> </strong>
+        </div>
+        <?php endif; ?>
+        
         <div class="p-5 mb-4 bg-light rounded-3">
             <div class="container-fluid py-5">
                 <h1 class="display-5 fw-bold">Welcome guest !</h1>
@@ -162,22 +241,24 @@
             </div>
         </section>
 
-        <section class="newsletter bg-secondary text-white">
+        <section class="newsletter bg-secondary text-white py-5">
             <div class="container">
-                <h3>
-                    Newsletter
-                </h3>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut excepturi quisquam illo ad, nihil fugit, architecto vitae et iste quas, autem hic laudantium ipsam numquam.
-                </p>
-
+                <div class="col-6 text-center mx-auto">
+                    <h3>
+                        Newsletter
+                    </h3>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut excepturi quisquam illo ad, nihil fugit, architecto vitae et iste quas, autem hic laudantium ipsam numquam.
+                    </p>
+                </div>
                 <form action="" method="get" class="d-flex justify-content-center align-items-center">
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control rounded-0" name="email" id="email" aria-describedby="emailHelper" placeholder="" />
+                        <!-- input type text, so we can check what happen when someone insert an incorrect email -->
+                        <input type="text" class="form-control rounded-0" name="email" id="email" aria-describedby="emailHelper" placeholder="" />
                         <small id="emailHelper" class="form-text text-muted">Type your email here</small>
                     </div>
-                    <button type="submit" class="btn btn-dark rounded-0">Submit</button>
+                    <button type="submit" class="btn btn-dark rounded-0 mb-2">Submit</button>
 
                 </form>
             </div>
