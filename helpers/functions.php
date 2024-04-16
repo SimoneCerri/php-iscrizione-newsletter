@@ -49,7 +49,11 @@ function validateEmail($mail)
     }
 }
 
-
+/**
+ * Redirect to another page.
+ * @param boolean $input true/false.
+ * @return url "thank-you.php" a thanks-page. 
+ */
 function redirect($input)
 {
     if ($input)
