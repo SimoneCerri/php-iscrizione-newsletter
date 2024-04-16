@@ -1,10 +1,11 @@
 <?php
 //var_dump($_GET);
 //var_dump(isset($_GET["email"])); //false till insert the "email" then true
+//var_dump(__DIR__); //REMEMBER TO START THE PATH WITH "/"
+require_once __DIR__ . "/helpers/functions.php"; //REMEMBER TO START THE PATH WITH "/"
 
 $userEmail = $_GET["email"];
-if(isset($userEmail))
-{
+if (isset($userEmail)) {
     //var_dump($userEmail);
     /* if(str_contains($userEmail,"@") && str_contains($userEmail, ".")) //check if "email" contain both "@" and "."
     {
@@ -16,6 +17,7 @@ if(isset($userEmail))
     } */
 
     $response = validateEmail($userEmail);
+
     /* if($response)
     {
         $message =
@@ -34,46 +36,6 @@ if(isset($userEmail))
 
     $message = generateAlert($response);
 }
-
-function generateAlert($input)
-{
-    if ($input) {
-        return
-            [
-                "class" => "success",
-                "alert" => "You subscribe to our newsletter !"
-            ];
-    } else {
-        return [
-            "class" => "danger",
-            "alert" => "Error! Insert a correct email please."
-        ];
-    }
-}
-
-function validateEmail($mail)
-{
-    if (str_contains($mail, "@") && str_contains($mail, ".")) //check if "email" contain both "@" and "."
-    {
-        //var_dump("ok");
-        //$message = "Welcome";
-        return true ;
-        //return "You subscribe to our newsletter !";
-        /* return [
-            "class" => "success",
-            "alert" => "You subscribe to our newsletter !"
-        ]; */
-    } else {
-        //$message = "Nope";
-        return false ;
-        //return "Error! Insert a correct email please.";
-        /* return [
-            "class" => "danger",
-            "alert" => "Error! Insert a correct email please."
-        ]; */
-    }
-}
-
 ?>
 
 
@@ -133,15 +95,23 @@ function validateEmail($mail)
     </header>
 
     <main>
-        <?php if(isset($message)) : ?>
-        <div
-            class="alert alert-<?php echo $message["class"] ?>"
-            role="alert"
-        >
-            <strong> <?php echo $message["alert"] ?> </strong>
-        </div>
-        <?php endif; ?>
         
+        <?php if (isset($message)) : ?>
+            <div class="my_alert alert-dismissible fade show alert alert-<?php echo $message["class"] ?>" role="alert">
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                <strong> <?php echo $message["alert"] ?> </strong>
+            </div>
+        <?php endif; ?>
+
+        <style>
+            .my_alert {
+                position: absolute;
+                top: 5%;
+                left: 3rem;
+                z-index: 9999;
+            }
+        </style>
+
         <div class="p-5 mb-4 bg-light rounded-3">
             <div class="container-fluid py-5">
                 <h1 class="display-5 fw-bold">Welcome guest !</h1>
