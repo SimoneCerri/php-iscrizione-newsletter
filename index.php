@@ -47,7 +47,7 @@ if (isset($userEmail)) {
 
 <head>
 
-    <title>CHANGE TITLE</title>
+    <title>Newsletter PHP</title>
     <meta charset='utf-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <!-- #region link to Style -->
@@ -82,7 +82,7 @@ if (isset($userEmail)) {
                                 <span class="visually-hidden">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">About</a>
+                            <a class="nav-link" href="/about.php">About</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Contacts</a>
