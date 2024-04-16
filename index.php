@@ -34,7 +34,8 @@ if (isset($userEmail)) {
         ];
     } */
 
-    $message = generateAlert($response);
+    //$message = generateAlert($response);
+    redirect($response);
 }
 
 include_once __DIR__ . "/layouts/head.php";

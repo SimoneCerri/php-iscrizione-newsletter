@@ -50,4 +50,18 @@ function validateEmail($mail)
 }
 
 
-?>
+function redirect($input)
+{
+    if ($input)
+    {
+        header('Location: thank-you.php');
+        exit();
+    }
+    else
+    {
+        return [
+            "class" => "danger",
+            "alert" => "Error! Insert a correct email please."
+        ];
+    }
+}
