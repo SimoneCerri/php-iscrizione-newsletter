@@ -78,14 +78,14 @@ if (isset($userEmail)) {
                 <div class="collapse navbar-collapse" id="collapsibleNavId">
                     <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" href="/" aria-current="page">Home
+                            <a class="nav-link active" href="./" aria-current="page">Home
                                 <span class="visually-hidden">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/about.php">About</a>
+                            <a class="nav-link" href="./about.php">About</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Contacts</a>
+                            <a class="nav-link" href="./contacts.php">Contacts</a>
                         </li>
                     </ul>
                 </div>
@@ -95,7 +95,7 @@ if (isset($userEmail)) {
     </header>
 
     <main>
-        
+
         <?php if (isset($message)) : ?>
             <div class="my_alert alert-dismissible fade show alert alert-<?php echo $message["class"] ?>" role="alert">
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
